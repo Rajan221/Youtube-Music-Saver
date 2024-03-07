@@ -1,0 +1,132 @@
+#music {
+  position: absolute;
+  left: 15vw;
+  top: 22vh;
+  height: 40vh;
+  z-index: -1;
+  opacity: 0.3;
+  caret-color: transparent;
+  user-select: none;
+}
+
+#musicCpy {
+  position: absolute;
+  right: 18vw;
+  top: 20vh;
+  height: 20vh;
+  z-index: -1;
+  opacity: 0.3;
+  caret-color: transparent;
+  user-select: none;
+}
+
+.headLine {
+  font-size: 80px;
+  font-weight: bold;
+}
+
+#topHeadLine {
+  margin-top: 14vw;
+}
+
+#highlight {
+  background: -webkit-linear-gradient(45deg, #6f6f6f, #03b3ce);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  caret-color: transparent;
+}
+
+#highlightInverted {
+  background: -webkit-linear-gradient(135deg, #6f6f6f, #03ce9b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  caret-color: transparent;
+}
+
+input {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 5vh;
+  width: 40vw;
+  border-radius: 20px;
+  border: none;
+  margin: 10px;
+  color: white;
+  padding-left: 15px;
+  font-size: 15px;
+  transition: 0.5s;
+}
+input:focus {
+  background-color: rgba(0, 0, 0, 0.4);
+  outline: none;
+}
+input:not(:focus) {
+  caret-color: transparent;
+}
+button {
+  height: 5vh;
+  background-color: #023e82;
+  border: none;
+  color: #aaa;
+  transition: 0.5s;
+  border-radius: 5px;
+}
+button:hover {
+  background-color: #0462ce;
+  color: white;
+}
+
+#recentHead {
+  margin-top: 20vh;
+  text-align: left;
+  margin-left: 3vw;
+  color: #6f6f6f;
+}
+
+#cards {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  row-gap: 2vw;
+
+  column-gap: 1px;
+  place-items: center;
+  width: 100%;
+
+  /* margin: auto; */
+}
+#cardsMostPlayed {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 2vw;
+
+  column-gap: 1px;
+  place-items: center;
+  width: 100%;
+
+  /* margin: auto; */
+}
+
+@media only screen and (max-width: 600px) {
+  .headLine {
+    font-size: 3rem;
+  }
+
+  #cards {
+    grid-template-columns: auto;
+  }
+
+  #music {
+    height: 20vh;
+    top: 5vh;
+    left: 5vw;
+  }
+
+  #musicCpy {
+    display: none;
+  }
+
+  #recentHead {
+    margin-top: 2vh;
+  }
+}

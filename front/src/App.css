@@ -1,0 +1,7 @@
+body {
+  text-align: center;
+  /* background-color: linear-gradient(black, #0c0044); */
+  /* background-color: black; */
+  background-image: radial-gradient(rgb(2, 36, 104), black);
+  color: white;
+}
