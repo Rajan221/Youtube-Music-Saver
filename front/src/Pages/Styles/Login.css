@@ -1,0 +1,12 @@
+#loginBody {
+  height: 100vh;
+}
+h1 {
+  user-select: none;
+}
+
+#toSignUp {
+  display: block;
+  margin: 20px;
+  color: white;
+}

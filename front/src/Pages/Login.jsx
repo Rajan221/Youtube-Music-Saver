@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import "./Styles/Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,14 +11,16 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     if (email === "rajansuper221@gmail.com" && password === "Pet14master@") {
-      navigate("/home");
     } else {
       alert("Email or Password dont match");
     }
+
+    navigate("/home");
   };
 
+  document.title = "Login";
   return (
-    <>
+    <div id="loginBody">
       <h1>Login Form</h1>
       <form onSubmit={handleLogin}>
         <input
@@ -38,7 +41,11 @@ function Login() {
         <br />
         <button type="submit">Login</button>
       </form>
-    </>
+
+      <Link id="toSignUp" to={"/signup"}>
+        Dont Have Account?
+      </Link>
+    </div>
   );
 }
 

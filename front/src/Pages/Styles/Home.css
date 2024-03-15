@@ -1,7 +1,7 @@
 #music {
   position: absolute;
   left: 15vw;
-  top: 22vh;
+  top: 10vh;
   height: 40vh;
   z-index: -1;
   opacity: 0.3;
@@ -26,7 +26,7 @@
 }
 
 #topHeadLine {
-  margin-top: 14vw;
+  margin-top: 4vw;
 }
 
 #highlight {
@@ -77,8 +77,12 @@ button:hover {
   color: white;
 }
 
+#paste {
+  margin: 0px 10px 0px 10px;
+}
+
 #recentHead {
-  margin-top: 20vh;
+  margin-top: 10vh;
   text-align: left;
   margin-left: 3vw;
   color: #6f6f6f;
