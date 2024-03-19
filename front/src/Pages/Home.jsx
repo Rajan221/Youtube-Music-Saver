@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import "./Styles/Home.css";
 
 import VideoCard from "./Components/VideoCard";
 import musicSvg from "../logos/music.svg";
 import Navbar from "./Navbar";
+
+export const SearchContext = createContext({
+  searchValue: "",
+
+  setSearchValue: () => {},
+  setResponse: () => {},
+});
 
 function Home() {
   const [url, setUrl] = useState("");
@@ -90,7 +97,11 @@ function Home() {
 
   return (
     <>
-      <Navbar />
+      <SearchContext.Provider
+        value={{ searchValue, setSearchValue, setResponse }}
+      >
+        <Navbar />
+      </SearchContext.Provider>
       <img id="music" src={musicSvg} alt="musicSvg" />
       <img id="musicCpy" src={musicSvg} alt="musicSvg" />
       <>

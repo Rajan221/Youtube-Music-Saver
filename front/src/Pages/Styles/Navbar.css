@@ -1,6 +1,8 @@
 #navbar {
+  height: 25px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 30px;
   position: sticky;
   top: 0px;
@@ -14,4 +16,9 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
+}
+
+#links {
+  color: white;
+  text-decoration: none;
 }
