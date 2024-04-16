@@ -2,10 +2,16 @@ import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import "./Styles/Home.css";
 
+//components imports
 import VideoCard from "./Components/VideoCard";
 import musicSvg from "../logos/music.svg";
 import Navbar from "./Navbar";
+import CategorySelector from "./Components/CategorySelector";
 
+// shadcn
+import { Toaster, toast } from "sonner";
+
+//search context for navbar
 export const SearchContext = createContext({
   searchValue: "",
 
@@ -13,34 +19,60 @@ export const SearchContext = createContext({
   setResponse: () => {},
 });
 
+//actual home component
 function Home() {
   const [url, setUrl] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [response, setResponse] = useState([]);
   const [mostPlayedResponse, setMostPlayedResponse] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [pasteClicked, setPasteClicked] = useState(false);
+  const [category, setCategory] = useState("Music");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
+      console.log();
       const response = await axios.post("http://localhost:5000/", { url });
 
+      console.log("Response message:", response.data.message); // Log the response message
+
       if (response.status === 201) {
-        alert("Music Added Successfully");
+        toast("Music Added Successfully", {
+          cancel: {
+            label: "X",
+          },
+        });
         fetchData();
         setUrl("");
       } else if (
         response.status === 200 &&
         response.data.message === "Video already added"
       ) {
-        alert("Video already added");
+        toast("Video already added into the list", {
+          cancel: {
+            label: "X",
+          },
+        });
         setUrl("");
       } else {
-        alert("An error occurred while adding the video");
+        toast("An error occurred while adding the video", {
+          cancel: {
+            label: "X",
+          },
+        });
       }
     } catch (error) {
-      console.error("Error fetching link preview:", error);
+      if (!pasteClicked) {
+        toast("Insert a Valid Link", {
+          cancel: {
+            label: "X",
+          },
+        });
+
+        console.error("Error fetching link preview:", error);
+      }
     } finally {
       setLoading(false);
     }
@@ -62,7 +94,11 @@ function Home() {
   };
 
   const onDelete = () => {
-    console.log("Deleted");
+    toast("Deleted Successfully", {
+      cancel: {
+        label: "X",
+      },
+    });
     fetchData();
   };
 
@@ -78,15 +114,27 @@ function Home() {
       setResponse(filteredData);
     } catch (error) {
       console.error("Error fetching data:", error);
+      toast("Error Fetching Data", {
+        cancel: {
+          label: "X",
+        },
+      });
     }
   };
 
   const handlePaste = async () => {
     try {
+      setPasteClicked(true);
       const text = await navigator.clipboard.readText();
+
       setUrl(text);
     } catch (error) {
       console.error("Error reading from clipboard:", error);
+      toast("Error Reading Value from Clipboard", {
+        cancel: {
+          label: "X",
+        },
+      });
     }
   };
 
@@ -95,6 +143,14 @@ function Home() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // Reset paste clicked state after a delay
+    const timeout = setTimeout(() => {
+      setPasteClicked(false);
+    }, 1); // Adjust the delay as needed
+    return () => clearTimeout(timeout);
+  }, [url]);
+
   return (
     <>
       <SearchContext.Provider
@@ -102,6 +158,8 @@ function Home() {
       >
         <Navbar />
       </SearchContext.Provider>
+      <Toaster theme="system" />
+
       <img id="music" src={musicSvg} alt="musicSvg" />
       <img id="musicCpy" src={musicSvg} alt="musicSvg" />
       <>
@@ -119,6 +177,16 @@ function Home() {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
+
+        <select
+          name="category"
+          id="categorySelector"
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="Music">Music</option>
+          <option value="Anime">Anime</option>
+          <option value="Others">Others</option>
+        </select>
         <button
           id="paste"
           onClick={() => {
@@ -128,6 +196,16 @@ function Home() {
           Paste
         </button>
         <button type="submit">Add to List</button>
+
+        <button
+          id="clear"
+          onClick={(e) => {
+            e.preventDefault();
+            setUrl("");
+          }}
+        >
+          Clear All
+        </button>
       </form>
       <br />
 

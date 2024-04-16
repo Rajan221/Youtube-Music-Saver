@@ -1,0 +1,13 @@
+#dropMenu {
+  position: absolute;
+  right: 0;
+  top: 38px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+#dropMenu {
+  color: white;
+  text-decoration: none;
+}

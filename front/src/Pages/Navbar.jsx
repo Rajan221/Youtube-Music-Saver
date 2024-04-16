@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { SearchContext } from "./Home";
 
 import "./Styles/Navbar.css";
 import { Link } from "react-router-dom";
+import Dropdown from "./Components/Dropdown";
 
 function Navbar() {
   const { searchValue, setSearchValue, setResponse } =
     useContext(SearchContext);
+  const [dropdown, setDropdown] = useState(false);
 
   const onSearch = async (value) => {
     setSearchValue(value);
@@ -26,8 +28,8 @@ function Navbar() {
 
   return (
     <div id="navbar">
-      <div>Logo</div>
-      <div>
+      <div id="logoDiv">Logo</div>
+      <div id="searchDiv">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -49,7 +51,15 @@ function Navbar() {
         <Link to={"/download"} id="links">
           Download
         </Link>
-        <Link id="links">Account</Link>
+        <Link
+          id="links"
+          onClick={() => {
+            dropdown ? setDropdown(false) : setDropdown(true);
+          }}
+        >
+          Account
+        </Link>
+        {dropdown ? <Dropdown /> : ""}
       </div>
     </div>
   );

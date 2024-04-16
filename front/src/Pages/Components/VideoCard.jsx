@@ -2,6 +2,7 @@ import "../Styles/VideoCard.css";
 import youtube from "../../logos/youtube.svg";
 import spotify from "../../logos/spotify.svg";
 import deleteIcon from "../../logos/delete.svg";
+import noIcon from "../../logos/null.svg";
 import axios from "axios";
 
 function VideoCard(props) {
@@ -12,7 +13,7 @@ function VideoCard(props) {
     } else if (lowerCaseTitle.includes("youtube")) {
       return youtube;
     }
-    return null;
+    return noIcon;
   };
 
   const renderLogo = () => {
@@ -43,14 +44,18 @@ function VideoCard(props) {
     // e.preventDefault();
     try {
       await axios.put(`http://localhost:5000/${props.id}`);
-      console.log("Click updated");
     } catch (e) {
       console.log("error updating clicks of video");
     }
   };
 
   return (
-    <a href={props.link} target="_blank" onClick={incrementCounter}>
+    <a
+      href={props.link}
+      target="_blank"
+      rel="noreferrer"
+      onClick={incrementCounter}
+    >
       <div id="contain">
         {renderLogo()}
         <img

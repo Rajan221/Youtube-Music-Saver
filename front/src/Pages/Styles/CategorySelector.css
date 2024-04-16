@@ -1,0 +1,36 @@
+.custom-select-container {
+  position: relative;
+}
+
+.custom-select {
+  display: grid;
+  place-items: center;
+  height: 5vh;
+  width: 5vw;
+  background-color: #023e82;
+  border: none;
+  color: #aaa;
+  transition: 0.5s;
+  border-radius: 5px;
+}
+
+.options {
+  position: absolute;
+  border-radius: 5px;
+  top: 100%; /* Position options just below the container */
+  left: 0; /* Align options with the left edge of the container */
+  width: 5vw; /* Make options span the width of the container */
+  background-color: #023e82; /* Example background color for options */
+  border: none; /* Example border for options */
+  border-top: none; /* Remove top border to prevent overlap */
+  z-index: 100; /* Ensure options appear above other content */
+}
+
+.option {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: #0462ce;
+}

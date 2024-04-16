@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
-dbConnection = "mongodb://localhost:27017/youtubeSave";
+dotenv.config();
+const dbConnection = process.env.DBCONNECTION;
+console.log(process.env.DBCONNECTION);
+
 mongoose
   .connect(dbConnection)
   .then(() => {

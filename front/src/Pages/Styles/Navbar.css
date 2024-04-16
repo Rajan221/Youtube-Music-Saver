@@ -9,16 +9,41 @@
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
   z-index: 100;
-  box-shadow: 0 10px 30px #111;
+  box-shadow: 0 10px 90px -1px #000000;
 }
 
 #navItems {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: space-around;
+
+  height: 25px;
+  position: relative;
 }
 
 #links {
   color: white;
   text-decoration: none;
+  padding: 0 20px 0 20px;
+  caret-color: transparent;
+  transition: 0.3s;
+}
+#links:hover {
+  transform: scale(1);
+}
+
+#logoDiv,
+#searchDiv {
+  width: 30%;
+}
+
+#logoDiv {
+  text-align: left;
+}
+
+#searchBox {
+  width: 90%;
+  margin-left: -12vw;
+}
+#searchBox:focus {
+  background-color: rgba(149, 149, 149, 0.203);
 }

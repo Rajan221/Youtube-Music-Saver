@@ -71,13 +71,34 @@ button {
   color: #aaa;
   transition: 0.5s;
   border-radius: 5px;
+  caret-color: transparent;
+  cursor: pointer;
 }
 button:hover {
   background-color: #0462ce;
   color: white;
 }
 
+#categorySelector {
+  height: 5vh;
+  background-color: #023e82;
+  border: none;
+  color: #aaa;
+  transition: 0.5s;
+  border-radius: 5px;
+  padding: 10px;
+}
+#categorySelector:focus {
+  outline: none;
+}
+option {
+  padding: 20px;
+}
+
 #paste {
+  margin: 0px 10px 0px 10px;
+}
+#clear {
   margin: 0px 10px 0px 10px;
 }
 
