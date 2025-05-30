@@ -41,6 +41,7 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const videoData = await Youtube.find().sort({ _id: -1 });
+
     res.status(201).json(videoData);
   } catch (e) {
     res.status(500).send(e);
@@ -59,6 +60,8 @@ router.get("/mostPlayed", async (req, res) => {
   } catch (e) {
     res.status(500).send(e);
   }
+
+
 });
 
 /*
